@@ -5,3 +5,6 @@ for i in range(10):
         if i > j:
             continue
         print("{:02}, ".format(i * 10 + j), end="")
+    if i == 8 and j == 9:
+        print("{}".format(i * 10 + j), end="")
+
