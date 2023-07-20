@@ -2,7 +2,7 @@
 
 def convert_to_celsius(fahrenheit):
     celcius = (5/9) * (fahrenheit - 32)
-    if celcius < 0:
-        return ("{:2f}".format(celcius))
+    if fahrenheit < 0 and type(fahrenheit) == float:
+        return (f"{celcius:.2f}")
     else:
         return celcius
