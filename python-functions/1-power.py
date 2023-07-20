@@ -1,5 +1,5 @@
 #!/usr/bin/python3
 
-def add(a, b):
+def pow(a, b):
     result = a**b
     return result
