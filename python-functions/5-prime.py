@@ -1,12 +1,11 @@
 #!/usr/bin/python3
 
 def is_prime(number):
-    prime = number * number
-    if number == number and number <= 1:
+    if number <= 1:
         return False
-    elif number % 2 == 0:
-        return False
-    elif number % 5 == 0:
-        return False
-    else:
-        return True
+
+    for a in range(2, int(number**0.5) + 1):
+        if number % a == 0:
+            return False
+
+    return True
