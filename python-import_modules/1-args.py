@@ -8,6 +8,6 @@ if __name__ == "__main__":
     if argnum == 0:
         print("{} arguments.".format(argnum))
     else:
-        print("{} arguments:".format(argnum))
+        print("{} argument(s):".format(argnum))
         for i, arg in enumerate(argv[1:], start=1):
             print("{}: {}".format(i, arg))
