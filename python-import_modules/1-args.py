@@ -3,8 +3,11 @@
 from sys import argv
 
 if __name__ == "__main__":
-    if argv == 0:
-        print("0 arguments.")
+    argnum = len(argv) - 1
+
+    if argnum == 0:
+        print("{} arguments.".format(argnum))
     else:
-        for i in range (len(argv)):
-            print("{} arguments: \n{}: {}".format(len(argv), i, argv[i]))
+        print("{} arguments:".format(argnum))
+        for i, arg in enumerate(argv[1:], start=1):
+            print("{}: {}".format(i, arg))
