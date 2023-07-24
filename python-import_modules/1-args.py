@@ -7,4 +7,4 @@ if __name__ == "__main__":
         print("{}: argument.".format(len(argv)))
     else:
         for i in range (len(argv)):
-            print("{} arguments: \n{}: {}".format(len(argv), argv[i], i))
+            print("{} arguments: \n{}: {}".format(len(argv), i, argv[i]))
