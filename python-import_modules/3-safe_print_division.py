@@ -8,5 +8,8 @@ def safe_print_division(a, b):
         print("{} / {} = None".format(a, b))
         return None
     finally:
-        print("Inside result: {}".format(float(a / b)))
+        try:
+            print("Inside result: {}".format(float(a / b)))
+        except:
+            pass
         return result
