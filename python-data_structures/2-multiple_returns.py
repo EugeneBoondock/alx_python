@@ -6,5 +6,5 @@ def multiple_returns(sentence):
         length = len(result)
         first = result[0]
         if length == 0:
-            first = None
+            first = 'None'
         return length, first
