@@ -4,7 +4,6 @@ def multiple_returns(sentence):
     result = str(sentence)
     for length in result:
         length = len(result)
-        first = result[0]
-        if length < 1:
-            first = None
-        return length, first
+        first = result[0] if length > 0 else None
+    return length, first
+
