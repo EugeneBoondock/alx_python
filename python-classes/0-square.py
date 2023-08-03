@@ -1,6 +1,11 @@
+#!/usr/bin/python3
+"""
+This is a sample module
+containing class
+"""
 class Square:
     """
-   This module defines the Square class that represents a square with a given size.
+    class named Square
     """
     def __init__(self, size):
         """
