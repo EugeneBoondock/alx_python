@@ -1,6 +1,7 @@
-#!/usr/bin/python3 
- """creates class Square with private instance attribute size""" 
-  
+#!/usr/bin/python3
+"""
+This module defines the Square class that represents a square with a given size.
+"""
   
  class Square: 
      """defines class and instantiates private instance attribute size.""" 
