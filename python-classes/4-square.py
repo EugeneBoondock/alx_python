@@ -40,7 +40,7 @@ class Square:
     @property
     def size(self):
         """
-        Getter for the size attribute.
+        Getter for the size attributee.
 
         Returns:
             int: The side length of the square.
