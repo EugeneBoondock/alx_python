@@ -1,5 +1,10 @@
 #!/usr/bin/python3
-"""class Square that defines a square"""
+"""
+
+This module Initializes a square instance
+with a given size
+
+"""
 
 class Square:
     """
