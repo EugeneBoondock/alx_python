@@ -1,8 +1,5 @@
 #!/usr/bin/python3
-"""
-This is a sample module
-containing class
-"""
+"""class Square that defines a square"""
 
 class Square:
     """
