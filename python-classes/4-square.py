@@ -2,6 +2,8 @@
 """
 This module defines a square by a private instance
 instantiation is optional.
+Handles the square sizes and the printing 
+of # at the end.
 """
 class Square:
     """
@@ -30,7 +32,7 @@ class Square:
 
     def area(self):
         """
-        Calculate and return the area of the square.
+        Calculate and return the area of the square
 
         Returns:
             int: The area of the square.
@@ -40,7 +42,7 @@ class Square:
     @property
     def size(self):
         """
-        Getter for the size attributee.
+        Getter for the size attribute.
 
         Returns:
             int: The side length of the square.
@@ -70,6 +72,7 @@ class Square:
         ###
         ###
         ###
+        
         """
         for _ in range(self.__size):
             print('#' * self.__size)
