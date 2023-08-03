@@ -3,6 +3,7 @@
 This is a sample module
 containing class
 """
+
 class Square:
     """
     class named Square
