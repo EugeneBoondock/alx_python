@@ -1,11 +1,7 @@
-"""
-This module defines the Square class that represents a square with a given size.
-"""
 class Square:
     """
-    Represents a square with a given size.
+   This module defines the Square class that represents a square with a given size.
     """
-
     def __init__(self, size):
         """
         Initialize a Square instance with the given size.
