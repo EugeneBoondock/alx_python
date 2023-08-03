@@ -28,10 +28,9 @@ class Square:
             raise ValueError("size must be >= 0")
         self.__size = size
 
-    @property
+
     def area(self):
         """
-        Getter for __size area
         Calculate and return the area of the square.
 
         Returns:
@@ -39,7 +38,7 @@ class Square:
         """
         return self.__size ** 2
 
-    @area.setter
+        @area.setter
     def area(self, value):
         if not isinstance(value, int):
             raise TypeError("size must be an integer")
