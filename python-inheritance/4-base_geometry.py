@@ -6,4 +6,5 @@ class BaseGeometry(object):
     """
     empty
     """
-    pass
+    def area(self):
+        raise TypeError("area() is not implemented")
