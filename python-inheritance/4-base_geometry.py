@@ -7,4 +7,4 @@ class BaseGeometry(object):
     empty
     """
     def area(self):
-        raise TypeError("area() is not implemented")
+        raise Exception("area() is not implemented")
