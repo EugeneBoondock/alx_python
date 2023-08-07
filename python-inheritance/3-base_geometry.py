@@ -2,7 +2,7 @@
 """
 Empty BaseGeometry Module
 """
-class BaseGeometry(object):
+class BaseGeometry:
     """
     empty
     """
