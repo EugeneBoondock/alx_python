@@ -6,5 +6,3 @@ class BaseGeometry:
     """
     empty
     """
-    def __init__(self):
-        pass
