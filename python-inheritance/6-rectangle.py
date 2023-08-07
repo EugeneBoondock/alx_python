@@ -18,8 +18,14 @@ class BaseGeometry:
         
         self.value = value
 
+"""
+Inherits from BaseGeometry
+"""
 class Rectangle(BaseGeometry):
-    
+    """
+    defines and initializes width and height
+    """
+
     def __init__(self, width, height):
         self.__width = width
         self.__height = height
