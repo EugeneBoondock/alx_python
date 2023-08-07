@@ -6,7 +6,4 @@ def is_same_class(obj, a_class):
     """
     This function defines an object and a class
     """
-    if isinstance(obj, a_class) == True:
-        return isinstance(obj, a_class)
-    else:
-        return False
+    return type(obj) is a_class
