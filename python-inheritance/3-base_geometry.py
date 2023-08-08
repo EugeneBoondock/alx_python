@@ -1,4 +1,4 @@
-#!//usr/bin/python3
+#!/usr/bin/python3
 """
 Empty BaseGeometry Module
 """
@@ -6,4 +6,5 @@ class BaseGeometry:
     """
     empty
     """
-    pass
+    def __init_subclass__(cls):
+        pass
