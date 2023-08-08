@@ -2,6 +2,8 @@
 """
 Empty BaseGeometry Module
 """
+
+
 class BaseGeometry:
     """
     Raises exceptions and there are values involved
@@ -19,6 +21,8 @@ class BaseGeometry:
 """
 Inherits from BaseGeometry
 """
+
+
 class Rectangle(BaseGeometry):
     """
     defines and initializes width and height
@@ -40,6 +44,8 @@ class Rectangle(BaseGeometry):
 """
 Inherits from Rectangle
 """
+
+
 class Square(Rectangle):
     """
     Properly calculates square area
