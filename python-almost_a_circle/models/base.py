@@ -3,6 +3,8 @@ import unittest
 """
 This is a new module
 """
+
+
 class Base:
     """
     This class is the base of all other classes in the project.
@@ -15,6 +17,10 @@ class Base:
         else:
             Base.__nb_objects += 1
             self.id = Base.__nb_objects
+"""
+A unittest class
+"""
+
 
 class TestBase(unittest.TestCase):
     def test_create_instance_with_id(self):
