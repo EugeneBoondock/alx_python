@@ -1,9 +1,10 @@
 #!/usr/bin/python3
-import unittest
 """
 A module for class Base
 """
 
+
+import unittest
 
 class Base:
     """
