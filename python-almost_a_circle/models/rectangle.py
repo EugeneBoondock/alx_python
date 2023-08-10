@@ -3,7 +3,7 @@
 This module defines the Rectangle class, which is a subclass of the Base class.
 """
 
-from base import Base
+import Base
 """
 importation I guess
 """
