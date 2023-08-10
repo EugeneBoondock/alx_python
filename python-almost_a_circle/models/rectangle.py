@@ -4,7 +4,9 @@ This module defines the Rectangle class, which is a subclass of the Base class.
 """
 
 from base import Base
-
+"""
+importation I guess
+"""
 class Rectangle(Base):
     """
     A class representing a rectangle, inheriting from the Base class.
