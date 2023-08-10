@@ -3,9 +3,14 @@
 This module is for a Rectangle
 """
 
+
 from base import Base
 
 class Rectangle(Base):
+    """
+    Function initialises width, height, x and y
+    also the id makes sure everything is int from Base
+    """
     def __init__(self, width, height, x=0, y=0, id=None):
         super().__init__(id)
         self.__width = width
