@@ -70,12 +70,12 @@ class Rectangle(Base):
             ValueError: If the new width value is not greater than 0.
         """
         if not isinstance(new_width, int):
-            raise TypeError(f"[TypeError] width must be an integer")
+            raise TypeError(f"width must be an integer")
 
         if new_width > 0:
             self.__width = new_width
         else:
-            raise ValueError(f"[ValueError] width must be > 0")
+            raise ValueError(f"width must be > 0")
 
     @property
     def height(self):
@@ -96,12 +96,12 @@ class Rectangle(Base):
             ValueError: If the new height value is not greater than 0.
         """
         if not isinstance(new_height, int):
-            raise TypeError(f"[TypeError] height must be an integer")
+            raise TypeError(f"height must be an integer")
 
         if new_height > 0:
             self.__height = new_height
         else:
-            raise ValueError(f"[ValueError] height must be > 0")
+            raise ValueError(f"height must be > 0")
 
     @property
     def x(self):
@@ -122,10 +122,10 @@ class Rectangle(Base):
             ValueError: If the new x-coordinate value is less than 0.
         """
         if not isinstance(new_x, int):
-            raise TypeError(f"[TypeError] x must be an integer")
+            raise TypeError(f"x must be an integer")
 
         if new_x < 0:
-            raise ValueError(f"[ValueError] x must be >= 0")
+            raise ValueError(f"x must be >= 0")
         else:
             self.__x = new_x
     
@@ -149,10 +149,10 @@ class Rectangle(Base):
         """
 
         if not isinstance(new_y, int):
-            raise TypeError(f"[TypeError] y must be an integer")
+            raise TypeError(f"y must be an integer")
         
         if new_y < 0:
-            raise ValueError(f"[ValueError] y must be >= 0")
+            raise ValueError(f"y must be >= 0")
         else:
             self.__y = new_y
 
