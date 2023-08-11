@@ -51,16 +51,11 @@ class Rectangle(Base):
         if y < 0:
             raise ValueError("y must be >= 0")
 
-    def __str__(self, width, height, x=0, y=0, id=None):
+    def __str__(self):
         """
         Prints out the sring output
         """
-        self.width = width
-        self.height = height
-        self.x = x
-        self.y = y
-
-        return (f"[Rectangle] ({id}) {self.x}/{self.y} - {self.width}/{self.height}")
+        return (f"[Rectangle] ({self.id}) {self.__x}/{self.__y} - {self.__width}/{self.__height}")
 
     @property
     def width(self):
