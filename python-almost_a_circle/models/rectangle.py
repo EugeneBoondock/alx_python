@@ -51,10 +51,13 @@ class Rectangle(Base):
         Raises:
             ValueError: If the new width value is not greater than 0.
         """
+        if not isinstance(new_width, int):
+            raise TypeError(f"{new_width} must be an integer")
+
         if new_width > 0:
             self.__width = new_width
         else:
-            raise ValueError("Value should be greater than 0")
+            raise ValueError(f"[ValueError] {new_width} must be > 0")
 
     @property
     def height(self):
@@ -74,10 +77,13 @@ class Rectangle(Base):
         Raises:
             ValueError: If the new height value is not greater than 0.
         """
+        if not isinstance(new_height, int):
+            raise TypeError(f"{new_height} must be an integer")
+
         if new_height > 0:
             self.__height = new_height
         else:
-            raise ValueError("Value should be greater than 0")
+            raise ValueError(f"[ValueError] {new_height} must be > 0")
 
     @property
     def x(self):
@@ -97,8 +103,11 @@ class Rectangle(Base):
         Raises:
             ValueError: If the new x-coordinate value is less than 0.
         """
+        if not isinstance(new_x, int):
+            raise TypeError(f"{new_x} must be an integer")
+
         if new_x < 0:
-            raise ValueError("Value should be greater than 0")
+            raise ValueError(f"{new_x} must be >= 0")
         else:
             self.__x = new_x
     
@@ -120,7 +129,11 @@ class Rectangle(Base):
         Raises:
             ValueError: If the new y-coordinate value is less than 0.
         """
+
+        if not isinstance(new_y, int):
+            raise TypeError(f"{new_y} must be an integer")
+        
         if new_y < 0:
-            raise ValueError("Value should be greater than 0")
+            raise ValueError(f"{new_y} must be >= 0")
         else:
             self.__y = new_y
