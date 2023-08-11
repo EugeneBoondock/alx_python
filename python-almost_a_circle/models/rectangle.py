@@ -172,11 +172,13 @@ class Rectangle(Base):
         """
         hashtag area 
         """
+        for _ in range(self.__y):
+            print()
+
         for _ in range(self.__height):
+            print(' ' * self.__x, end='')
             print('#' * self.__width)
 
-        for _ in range(self.__x):
-            print('' * self.__y)
 
 
 """
