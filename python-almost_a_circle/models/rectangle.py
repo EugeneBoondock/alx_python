@@ -156,6 +156,8 @@ class Rectangle(Base):
         else:
             self.__y = new_y
 
+    def area(self):
+        return self.__width * self.__height
 
 """
 Unittest Module
