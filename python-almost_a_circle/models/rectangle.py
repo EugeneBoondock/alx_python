@@ -176,7 +176,7 @@ class Rectangle(Base):
             print('#' * self.__width)
 
         for _ in range(self.__x):
-            print(' ' * self.__y)
+            print('' * self.__y)
 
 
 """
