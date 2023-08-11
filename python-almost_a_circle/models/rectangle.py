@@ -58,7 +58,7 @@ class Rectangle(Base):
         if new_width > 0:
             self.__width = new_width
         else:
-            raise ValueError(f"[ValueError] {new_width} must be > 0")
+            raise ValueError(f"{new_width} must be > 0")
 
     @property
     def height(self):
