@@ -55,7 +55,12 @@ class Rectangle(Base):
         """
         Prints out the sring output
         """
-        return (f"[Rectangle] ({id}) {x}/{y} - {width}/{height}")
+        self.width = width
+        self.height = height
+        self.x = x
+        self.y = y
+
+        return (f"[Rectangle] ({id}) {self.x}/{self.y} - {self.width}/{self.height}")
 
     @property
     def width(self):
