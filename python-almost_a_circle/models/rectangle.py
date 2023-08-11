@@ -157,6 +157,9 @@ class Rectangle(Base):
             self.__y = new_y
 
     def area(self):
+        """
+        Area for rectangle class blah blah blah
+        """
         return self.__width * self.__height
 
 """
