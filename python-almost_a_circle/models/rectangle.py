@@ -152,7 +152,7 @@ class TestRect(unittest.TestCase):
         """
         Test checking if values are int.
         """
-        y = Rectangle(10, 5, 2, 4)
+        y = Rectangle('10', 5, 2, 4)
         self.assertIsInstance(y.id, int)
         self.assertIsInstance(y.width, int)
         self.assertIsInstance(y.height, int)
