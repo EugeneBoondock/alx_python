@@ -51,6 +51,9 @@ class Rectangle(Base):
         if y < 0:
             raise ValueError("y must be >= 0")
 
+    def __str__(self, width, height, x=0, y=0, id=None):
+        return (f"[Rectangle] ({id}) {x}/{y} - {width}/{height}")
+
     @property
     def width(self):
         """
@@ -168,6 +171,7 @@ class Rectangle(Base):
         """
         for _ in range(self.__height):
             print('#' * self.__width)
+
 
 """
 Unittest Module
