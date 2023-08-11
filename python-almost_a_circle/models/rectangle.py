@@ -2,6 +2,7 @@
 """
 This module defines the Rectangle class, which is a subclass of the Base class.
 """
+from models.base import Base
 
 
 class Rectangle(Base):
