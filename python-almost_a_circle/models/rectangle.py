@@ -63,8 +63,8 @@ class Rectangle(Base):
         """
         if len(args) > 0:
             for _ in len(kwargs):
-                pass
-
+                break
+   
         if len(args) == 1:
             self.id = args[0]
         if len(args) == 2:
