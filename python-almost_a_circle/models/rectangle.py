@@ -61,8 +61,8 @@ class Rectangle(Base):
         """
         Updates the attributes based on the number of arguments
         """
-        if args > 0:
-            for i in len(kwargs):
+        if len(args) > 0:
+            for _ in len(kwargs):
                 pass
 
         if len(args) == 1:
