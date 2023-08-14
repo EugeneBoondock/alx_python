@@ -47,19 +47,19 @@ class Square(Rectangle):
     @size.setter
     def size(self, width, length, size):
         """
-        Set the width of the rectangle.
+        Set the size of the square.
 
         Args:
-            new_width (int): The new width value.
+            width (int): The width value.
 
         Raises:
-            ValueError: If the new width value is not greater than 0.
+            ValueError: If the width value is not greater than 0.
         """
         self.width = length
         if not isinstance(width, length, int):
-            raise TypeError(f"size must be an integer")
+            raise TypeError(f"width must be an integer")
 
         if width > 0:
             self.size = size
         else:
-            raise ValueError(f"size must be > 0")
+            raise ValueError(f"width must be > 0")
