@@ -36,3 +36,30 @@ class Square(Rectangle):
         Prints out the sring output
         """
         return (f"[Square] ({self.id}) {self.x}/{self.y} - {self.size}")
+    
+    @property
+    def size(self):
+        """
+        int: The width of the rectangle.
+        """
+        return self.size
+    
+    @size.setter
+    def size(self, width, length, size):
+        """
+        Set the width of the rectangle.
+
+        Args:
+            new_width (int): The new width value.
+
+        Raises:
+            ValueError: If the new width value is not greater than 0.
+        """
+        self.width = length
+        if not isinstance(width, length, int):
+            raise TypeError(f"size must be an integer")
+
+        if width > 0:
+            self.size = size
+        else:
+            raise ValueError(f"size must be > 0")
