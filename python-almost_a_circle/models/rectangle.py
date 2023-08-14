@@ -56,6 +56,17 @@ class Rectangle(Base):
         Prints out the sring output
         """
         return (f"[Rectangle] ({self.id}) {self.__x}/{self.__y} - {self.__width}/{self.__height}")
+    
+    def update(self, *args):
+        """
+        Updates the arguments
+        """
+        self.id = args[0]
+        self.__width = args[1]
+        self.__height = args[2]
+        self.__x = args[3]
+        self.__y = args[4]
+        return args
 
     @property
     def width(self):
@@ -178,8 +189,6 @@ class Rectangle(Base):
         for _ in range(self.__height):
             print(' ' * self.__x, end='')
             print('#' * self.__width)
-
-
 
 """
 Unittest Module
