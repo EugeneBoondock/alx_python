@@ -4,7 +4,8 @@ This module fetches X-Request-id from a custom url
 then prints it out
 if there isn't any, then an exception is raised.
 """
-import requests, sys
+import requests
+import sys
 
 
 url = 'https://www.earth2.io'
