@@ -25,11 +25,13 @@ if q == 0:
     q=""
 
 response = requests.post(url, data={'q': q})
+id = response.headers.get('X-Request-Id')
+name = json_response
 
 try:
     json_response = response.json()
     if json_response:
-        print(f"[{response.headers.get('X-Request-Id')}] {json_response}")
+        print(f"[{id}] {name}")
     else:
         print("No result")
 except ValueError:
