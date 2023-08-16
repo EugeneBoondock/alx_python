@@ -8,7 +8,6 @@ import requests
 
 
 if len(sys.argv) != 3:
-    print(f"Usage: {sys.argv[0]} <url> <char>")
     sys.exit(1)
 
 sys.argv[1] = 'http://0.0.0.0:5000/search_user'
