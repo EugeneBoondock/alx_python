@@ -16,7 +16,7 @@ url = sys.argv[1]
 
 response = requests.get(url)
 
-if response.status_codes >= 400:
-    print(f"Error code: {response.status_codes}")
+if response.status_code >= 400:
+    print(f"Error code: {response.status_code}")
 else:
     print(response)
