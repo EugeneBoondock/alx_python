@@ -7,11 +7,11 @@ import sys
 import requests
 
 
-if len(sys.argv) != 3:
+if len(sys.argv) != 2:
+    print(f"Usage: {sys.argv[0]} <char>")
     sys.exit(1)
 
-sys.argv[1] = 'http://0.0.0.0:5000/search_user'
-url = sys.argv[1]
+url = 'http://0.0.0.0:5000/search_user'
 q = sys.argv[2]
 
 q = str(q)
