@@ -15,7 +15,8 @@ if len(sys.argv) != 2:
 url = sys.argv[1]
 
 try:
-    custom_id = url.headers.get('X-Request-Id')
+    response = requests.get(url)
+    custom_id = response.headers.get('X-Request-Id')
     print("{}".format(custom_id))
 
 except Exception as e:
