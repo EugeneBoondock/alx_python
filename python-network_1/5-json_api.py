@@ -12,7 +12,7 @@ if len(sys.argv) != 2:
     sys.exit(1)
 
 url = 'http://0.0.0.0:5000/search_user'
-q = sys.argv[2]
+q = sys.argv[1]
 
 q = str(q)
 
