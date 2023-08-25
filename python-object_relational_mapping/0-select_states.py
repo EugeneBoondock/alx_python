@@ -11,7 +11,7 @@ def main():
     Script connects to database through MySQL connect
     fetches and does other stuff
     """
-    db = MySQLdb.connect(host='localhost', user='eugene', password='pass', port=3306, database='hbtn_0e_0_usa')
+    db = MySQLdb.connect(host='localhost', user='eugene', password='YES', port=3306, database='hbtn_0e_0_usa')
 
     cursor = db.cursor()
 
