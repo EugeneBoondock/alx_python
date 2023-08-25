@@ -19,7 +19,8 @@ def main():
     password = sys.argv[2]
     database = sys.argv[3]
 
-    db = MySQLdb.connect(host='localhost', user=username, passwd=password, port=3306, db=database)
+    db = MySQLdb.connect(
+        host='localhost', user=username, passwd=password, port=3306, db=database)
     cursor = db.cursor()
 
     select_query = "SELECT * FROM states ORDER BY id ASC"
