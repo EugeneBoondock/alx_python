@@ -1,36 +1,35 @@
 #!/usr/bin/python3
 
 import MySQLdb
+import sys
 """
-SQL for Python scripts that does things
+Script lists all the states in a table
 """
 
 
 def main():
     """
-    Script connects to database through MySQL connect
-    fetches and does other stuff
+    Function takes all parameters required
     """
-    db = MySQLdb.connect(host='localhost', user='eugene', password='YES', port=3306, database='hbtn_0e_0_usa')
+    if len(sys.argv) != 4:
+        print("Usage: {} <mysql_username> <mysql_password> <database_name>".format(sys.argv[0]))
+        sys.exit(1)
 
+    username = sys.argv[1]
+    password = sys.argv[2]
+    database = sys.argv[3]
+
+    db = MySQLdb.connect(host='localhost', user=username, passwd=password, port=3306, db=database)
     cursor = db.cursor()
 
-    create_table_sql = """
-        CREATE TABLE IF NOT EXISTS states
-        id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-        name VARCHAR(256) NOT NULL
-    """
-    select_query = ("SELECT * from states ORDER by id ASC")
-
+    select_query = "SELECT * FROM states ORDER BY id ASC"
     cursor.execute(select_query)
 
-    results = cursor.fetchall()
+    for row in cursor.fetchall():
+        print(row)
 
-    for row in results:
-        print(row[0], row[1])
-
-    db.close()
     cursor.close()
+    db.close()
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
