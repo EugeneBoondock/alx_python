@@ -20,7 +20,7 @@ def main():
         id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
         name VARCHAR(256) NOT NULL
     """
-    select_query = ("SELECT * from states ORDER by id DESC")
+    select_query = ("SELECT * from states ORDER by id ASC")
 
     cursor.execute(select_query)
 
