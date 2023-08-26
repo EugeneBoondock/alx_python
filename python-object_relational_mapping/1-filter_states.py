@@ -33,7 +33,7 @@ def main():
 
     cursor = db.cursor()
 
-    select_query = "SELECT * WHERE UPPER(user) = username FROM states ORDER BY id ASC"
+    select_query = "SELECT * WHERE Binary username LIKE '%N' FROM states ORDER BY id ASC"
     cursor.execute(select_query)
 
     for row in cursor.fetchall():
