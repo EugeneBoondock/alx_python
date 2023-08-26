@@ -12,7 +12,10 @@ def main():
     Function takes all parameters required
     """
     if len(sys.argv) != 4:
-        print("Usage: {} <mysql_username> <mysql_password> <database_name>".format(sys.argv[0]))
+        usage = "Usage: {} <mysql_username> <mysql_password>".format(sys.argv[0])
+        usage += " <database_name>"
+        print(usage)
+
         sys.exit(1)
 
     username = sys.argv[1]
@@ -20,7 +23,12 @@ def main():
     database = sys.argv[3]
 
     db = MySQLdb.connect(
-        host='localhost', user=username, passwd=password, port=3306, db=database)
+    host='localhost', 
+    user=username, 
+    passwd=password, 
+    port=3306, 
+    db=database
+)
     cursor = db.cursor()
 
     select_query = "SELECT * FROM states ORDER BY id ASC"
