@@ -35,7 +35,7 @@ def main():
 
     select_query = """
     SELECT * FROM states 
-    WHERE BINARY user LIKE '%N' 
+    WHERE BINARY name LIKE '%N' 
     ORDER BY id ASC
     """
     
