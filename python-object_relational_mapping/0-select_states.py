@@ -2,20 +2,21 @@
 
 import MySQLdb
 import sys
+
 """
 Script lists all the states in a table
 """
-
 
 def main():
     """
     Function takes all parameters required
     """
     if len(sys.argv) != 4:
-        usage = "Usage: {} <mysql_username> <mysql_password>".format(sys.argv[0])
-        usage += " <database_name>"
+        usage = (
+            "Usage: {} <mysql_username> <mysql_password>"
+            " <database_name>".format(sys.argv[0])
+        )
         print(usage)
-
         sys.exit(1)
 
     username = sys.argv[1]
@@ -23,11 +24,12 @@ def main():
     database = sys.argv[3]
 
     db = MySQLdb.connect(
-    host='localhost',
-    user=username,
-    passwd=password,
-    port=3306,
-    db=database)
+        host='localhost',
+        user=username,
+        passwd=password,
+        port=3306,
+        db=database
+    )
 
     cursor = db.cursor()
 
