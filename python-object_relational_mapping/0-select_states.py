@@ -2,10 +2,10 @@
 
 import MySQLdb
 import sys
-
 """
 Script lists all the states in a table
 """
+
 
 def main():
     """
