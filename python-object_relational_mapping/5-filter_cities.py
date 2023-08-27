@@ -42,7 +42,7 @@ if __name__ == "__main__":
 
     rows = cursor.fetchall()
     for row in rows:
-        print(", ".join(row))
+        print(f"{row[0]}, {row[1]}")
 
     cursor.close()
     db.close()
