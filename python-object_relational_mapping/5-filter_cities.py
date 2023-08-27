@@ -2,13 +2,13 @@
 
 import MySQLdb
 import sys
+
 """
 Script that lists all states starting with cap N
 """
 
-
 if __name__ == "__main__":
-
+    # Check for the correct number of arguments
     if len(sys.argv) != 5:
         print("""Usage: {} needs
               <username>
@@ -33,9 +33,10 @@ if __name__ == "__main__":
 
     query = """
             SELECT cities.id, cities.name, states.name
-            FROM cities WHERE states.name = %s
-            JOIN  states ON cities.state_id = states.id
-            ORDER BY id ASC"""
+            FROM cities
+            JOIN states ON cities.state_id = states.id
+            WHERE states.name LIKE %s
+            ORDER BY cities.id ASC"""
 
     cursor.execute(query, (state_name + '%',))
 
