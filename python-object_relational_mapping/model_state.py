@@ -9,6 +9,7 @@ Base = declarative_base()
 
 # This class is fully documented
 
+
 class State(Base):
     """
     Class uses SQLAlchemy and inherits Base.
