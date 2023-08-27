@@ -32,16 +32,16 @@ if __name__ == "__main__":
             db = database
         )
 
-    query = """SELECT * FROM states
-            WHERE name LIKE BINARY %s
-            ORDER BY state_id ASC"""
+        query = """SELECT * FROM states
+                WHERE name LIKE BINARY %s
+                ORDER BY state_id ASC"""
 
-    cursor= db.cursor()
-    cursor.execute(query)
+        cursor= db.cursor()
+        cursor.execute(query)
 
-    rows = cursor.fetchall()
-    for row in rows:
-        print(row)
+        rows = cursor.fetchall()
+        for row in rows:
+            print(row)
 
-    cursor.close()
-    db.close()
+        cursor.close()
+        db.close()
