@@ -26,10 +26,10 @@ if __name__ == "__main__":
 
     db = MySQLdb.connect(
         host = "localhost",
-        user = "username",
-        passwd = "password",
+        user = username,
+        passwd = password,
         port = 3306,
-        database = "database"
+        database = database
     )
 
     query = """SELECT * FROM states
