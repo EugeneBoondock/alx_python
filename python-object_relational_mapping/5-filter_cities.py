@@ -37,7 +37,7 @@ if __name__ == "__main__":
             WHERE states.name LIKE %s
             ORDER BY cities.id ASC"""
 
-    cursor.execute(query, (state_name))
+    cursor.execute(query, (state_name + '%'))
 
     rows = cursor.fetchall()
     for row in rows:
