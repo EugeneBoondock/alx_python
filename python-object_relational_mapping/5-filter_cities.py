@@ -33,7 +33,7 @@ if __name__ == "__main__":
 
     query = """
             SELECT cities.id, cities.name, states.name
-            FROM cities WHERE states.name == %s
+            FROM cities WHERE states.name = %s
             JOIN  states ON cities.state_id = states.id
             ORDER BY id ASC"""
 
