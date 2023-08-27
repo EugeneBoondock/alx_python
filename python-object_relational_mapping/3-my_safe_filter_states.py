@@ -33,11 +33,13 @@ if __name__ == "__main__":
         )
 
         query = """SELECT * FROM states
-                WHERE name LIKE BINARY '%N' %s
-                ORDER BY state_id ASC"""
+                WHERE name LIKE BINARY %s
+                ORDER BY state_id ASC
+                """.format(state_name)
 
         cursor= db.cursor()
         cursor.execute(query)
+        db.commit()
 
         rows = cursor.fetchall()
         for row in rows:
