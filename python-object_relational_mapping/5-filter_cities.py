@@ -35,9 +35,9 @@ if __name__ == "__main__":
             SELECT cities.name
             FROM cities
             WHERE states.name LIKE %s
-            ORDER BY cities.id ASC""".format(state_name)
+            ORDER BY cities.id ASC"""
 
-    cursor.execute(query)
+    cursor.execute(query, (state_name))
 
     rows = cursor.fetchall()
     for row in rows:
