@@ -13,6 +13,7 @@ Base = declarative_base()
 class State(Base):
     """
     Class uses sqlalchemy and inherits Base
+    This class is fully documentes
     """
     __tablename__ = 'states'
     id = Column(Integer, primary_key=True)
