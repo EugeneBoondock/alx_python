@@ -41,7 +41,7 @@ if __name__ == "__main__":
                                    password,
                                    database),
                                    pool_pre_ping=True)
-    Base.metadata.create_all(engine)
-    """
-    This class is fully documentes
-    """
+Base.metadata.create_all(engine)
+"""
+This class is fully documentes
+"""
