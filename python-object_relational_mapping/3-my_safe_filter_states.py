@@ -14,9 +14,9 @@ if __name__ == "__main__":
             password:{}
             db_name:{}
             state_name:{}
-            """.format(sys.argv[1], 
-                        sys.argv[2], 
-                        sys.argv[3], 
+            """.format(sys.argv[1],
+                        sys.argv[2],
+                        sys.argv[3],
                         sys.argv[4]))
         
         username = sys.argv[1]
@@ -33,7 +33,7 @@ if __name__ == "__main__":
         )
 
         query = """SELECT * FROM states
-                WHERE name LIKE BINARY %s
+                WHERE name LIKE BINARY '%N' %s
                 ORDER BY state_id ASC"""
 
         cursor= db.cursor()
