@@ -33,7 +33,7 @@ if __name__ == "__main__":
         )
 
         query = """SELECT * FROM states
-                WHERE name LIKE BINARY %s
+                WHERE name LIKE BINARY '{}%s'
                 ORDER BY state_id ASC
                 """.format(state_name)
 
