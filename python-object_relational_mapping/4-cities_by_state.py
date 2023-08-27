@@ -7,12 +7,12 @@ Script that lists all states starting with cap N
 """
 
 
-if __name__ == "__main__":
+if __name__=="__main__":
 
-    if len(sys.argv) != 4:
+    if len(sys.argv)!=4:
         print("""Usage: {} needs
-              <username> 
-              <password> and 
+              <username>
+              <password> and
               <database_name""".format(sys.argv[0]))
         sys.exit(1)
 
@@ -21,17 +21,19 @@ if __name__ == "__main__":
     database = sys.argv[3]
 
     db = MySQLdb.connect(
-        host = 'localhost',
-        user = username,
-        passwd = password,
-        db = database,
-        port = 3306
+        host='localhost',
+        user=username,
+        passwd=password,
+        db=database,
+        port=3306
     )
 
-    cursor = db.cursor()
+    cursor=db.cursor()
 
-    query = """
-            SELECT * FROM cities
+    query="""
+            SELECT cities.id, cities.name, states.name
+            FROM cities
+            JOIN  states ON cities.state_id = states.id
             ORDER BY id ASC"""
     
     cursor.execute(query)
