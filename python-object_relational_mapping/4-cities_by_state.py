@@ -19,7 +19,6 @@ if __name__ == "__main__":
     username = sys.argv[1]
     password = sys.argv[2]
     database = sys.argv[3]
-    state_name = sys.argv[4]
 
     db = MySQLdb.connect(
         hostname = 'localhost',
@@ -32,11 +31,10 @@ if __name__ == "__main__":
     cursor = db.cursor()
 
     query = """
-            SELECT * FROM states
-            WHERE LIKE BINARY %s
+            SELECT * FROM cities
             ORDER BY id ASC"""
     
-    cursor.execute(query, (state_name + '%',))
+    cursor.execute(query)
 
     rows = cursor.fetchall()
     for row in rows:
