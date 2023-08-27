@@ -13,7 +13,7 @@ if __name__ == "__main__":
         print("""Usage: {} needs
               <username> 
               <password> and 
-              <database_name""".format(sys.arv[0]))
+              <database_name""".format(sys.argv[0]))
         sys.exit(1)
 
     username = sys.argv[1]
