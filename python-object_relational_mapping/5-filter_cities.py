@@ -34,11 +34,10 @@ if __name__ == "__main__":
     query = """
             SELECT cities.name
             FROM cities
-            JOIN states ON cities.state_id = states.id
             WHERE states.name LIKE %s
-            ORDER BY cities.id ASC"""
+            ORDER BY cities.id ASC""".format(state_name)
 
-    cursor.execute(query, (state_name + '%',))
+    cursor.execute(query)
 
     rows = cursor.fetchall()
     for row in rows:
