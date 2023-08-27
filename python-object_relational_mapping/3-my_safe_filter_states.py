@@ -9,7 +9,7 @@ avoids SQL injection
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 4:
+    if len(sys.argv) != 5:
         print("""Usage: Enter username:{}
             password:{}
             db_name:{}
