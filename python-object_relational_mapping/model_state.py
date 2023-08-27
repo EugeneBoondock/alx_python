@@ -9,6 +9,7 @@ Start link class to table in database
 
 Base = declarative_base()
 
+
 class State(Base):
     """
     Class uses sqlalchemy and inherits Base
@@ -19,7 +20,7 @@ class State(Base):
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
-        print("""Usage: {} 
+        print("""Usage: {}
               <username>
               <password>
               <database_name>
@@ -32,8 +33,8 @@ if __name__ == "__main__":
 
     engine = create_engine('''mysql+mysqldb:
                            //{}:{}@localhost/{}'''
-                           .format(username, 
-                                   password, 
-                                   database), 
+                           .format(username,
+                                   password,
+                                   database),
                                    pool_pre_ping=True)
     Base.metadata.create_all(engine)
