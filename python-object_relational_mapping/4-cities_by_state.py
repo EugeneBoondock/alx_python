@@ -21,7 +21,7 @@ if __name__ == "__main__":
     database = sys.argv[3]
 
     db = MySQLdb.connect(
-        hostname = 'localhost',
+        host = 'localhost',
         user = username,
         passwd = password,
         db = database,
