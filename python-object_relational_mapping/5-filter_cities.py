@@ -32,17 +32,17 @@ if __name__ == "__main__":
     cursor = db.cursor()
 
     query = """
-            SELECT cities.name
+            SELECT cities.name, states.name
             FROM cities
             JOIN states ON cities.state_id = states.id
             WHERE states.name LIKE %s
             ORDER BY cities.id ASC"""
 
-    cursor.execute(query, (state_name + '%'))
+    cursor.execute(query, (state_name + '%',))
 
     rows = cursor.fetchall()
     for row in rows:
-        print(row)
+        print(", ".join(row))
 
     cursor.close()
     db.close()
