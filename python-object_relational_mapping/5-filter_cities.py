@@ -41,8 +41,9 @@ if __name__ == "__main__":
     cursor.execute(query, (state_name + '%',))
 
     rows = cursor.fetchall()
-    for row in rows:
-        print(f"{row[0]}, {row[1]}")
+
+    cities = ", ".join(row[0] for row in rows)
+    print(cities)
 
     cursor.close()
     db.close()
