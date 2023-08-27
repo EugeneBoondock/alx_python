@@ -7,18 +7,18 @@ Script that lists all states starting with cap N
 """
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
 
-    if len(sys.argv)!=4:
+    if len(sys.argv) != 4:
         print("""Usage: {} needs
               <username>
               <password> and
               <database_name""".format(sys.argv[0]))
         sys.exit(1)
 
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
+    username=sys.argv[1]
+    password=sys.argv[2]
+    database=sys.argv[3]
 
     db = MySQLdb.connect(
         host='localhost',
