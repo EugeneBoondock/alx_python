@@ -3,20 +3,16 @@
 import sys
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
-"""
-Start link class to table in database
-"""
 
+# Start link class to table in database
 Base = declarative_base()
-"""
-This class is fully documented
-"""
 
+# This class is fully documented
 
 class State(Base):
     """
-    Class uses sqlalchemy and inherits Base
-    This class is fully documentes
+    Class uses SQLAlchemy and inherits Base.
+    This class is fully documented.
     """
     __tablename__ = 'states'
     id = Column(Integer, primary_key=True)
@@ -40,8 +36,8 @@ if __name__ == "__main__":
                            .format(username,
                                    password,
                                    database),
-                                   pool_pre_ping=True)
-Base.metadata.create_all(engine)
-"""
-This class is fully documentes
-"""
+                           pool_pre_ping=True)
+    Base.metadata.create_all(engine)
+    """
+    This class is fully documented
+    """
