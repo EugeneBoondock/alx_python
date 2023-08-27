@@ -29,7 +29,7 @@ if __name__ == "__main__":
             user = username,
             passwd = password,
             port = 3306,
-            database = database
+            db = database
         )
 
     query = """SELECT * FROM states
