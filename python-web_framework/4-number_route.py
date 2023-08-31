@@ -1,7 +1,7 @@
 """
 documented again and again
 """
-from flask import Flask
+from flask import Flask, abort
 """
 This is a flask web application
 """
@@ -47,6 +47,8 @@ def number(n):
     """
     if n.isdigit():
         return f"{n} is a number"
+    else:
+        abort(404)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
