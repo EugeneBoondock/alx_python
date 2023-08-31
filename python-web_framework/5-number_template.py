@@ -1,7 +1,7 @@
 """
 documented again and again
 """
-from flask import Flask, abort
+from flask import Flask, abort, render_template
 """
 This is a flask web application
 """
@@ -54,8 +54,8 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
 
 
-@app.route('/number_template/<n>', strict_slashes=False)
-def number_template(n=int(n)):
+@app.route('/number_template/<int:n>', strict_slashes=False)
+def number_template(n):
     """
     Renders an HTML page that displays the number n.
     Documented again and again.
