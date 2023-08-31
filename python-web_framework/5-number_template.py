@@ -1,38 +1,32 @@
 """
-This is a Flask web application that implements various routes.
-Module Flask has been documented 
+documented again and again
+"""
+from flask import Flask, abort
+"""
+This is a flask web application
 """
 
-from flask import Flask, abort, render_template
-"""
-This part imports flask from Flask hehe
-module flask has been documented
-"""
 
 app = Flask(__name__)
-"""
-Similar to if __name__ == '__main__'
-module Flask documented 
-"""
 
 @app.route('/', strict_slashes=False)
 def hello_hbnb():
     """
-    Returns a greeting message "Hello HBNB!" when the root URL is accessed.
+    This function returns a string "Hello BNB!" when the root URL is accessed.
     """
     return "Hello HBNB!"
 
 @app.route('/hbnb', strict_slashes=False)
 def hbnb():
     """
-    Returns "HBNB" when the URL /hbnb is accessed.
+    This function returns a string "HBNB" when the URL /hbnb is accessed
     """
     return "HBNB"
 
 @app.route('/c/<text>', strict_slashes=False)
 def c_is_fun(text):
     """
-    Returns "C " followed by the value of the text variable (with underscores replaced by spaces).
+    This function returns a string "HBNB" when the URL /hbnb is accessed
     """
     text = text.replace("_", " ")
     return f"C {text}"
@@ -41,7 +35,7 @@ def c_is_fun(text):
 @app.route('/python/<text>', strict_slashes=False)
 def python_text(text="is cool"):
     """
-    Returns "Python " followed by the value of the text variable (with underscores replaced by spaces).
+    This function returns a string "HBNB" when the URL /hbnb is accessed
     """
     text = text.replace("_", " ")
     return f"Python {text}"
@@ -49,12 +43,16 @@ def python_text(text="is cool"):
 @app.route('/number/<n>', strict_slashes=False)
 def number(n):
     """
-    Returns a message indicating whether n is a number or not.
+    This function returns a string "HBNB" when the URL /hbnb is accessed
     """
     if n.isdigit():
         return f"{n} is a number"
     else:
         abort(404)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
+
 
 @app.route('/number_template/<n>', strict_slashes=False)
 def number_template(n=int(n)):
