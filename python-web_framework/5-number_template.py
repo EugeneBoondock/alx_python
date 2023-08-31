@@ -3,8 +3,14 @@ This is a Flask web application that implements various routes.
 """
 
 from flask import Flask, abort, render_template
+"""
+This part imports flask from Flask hehe
+"""
 
 app = Flask(__name__)
+"""
+Similar to if __name__ == '__main__'
+"""
 
 @app.route('/', strict_slashes=False)
 def hello_hbnb():
