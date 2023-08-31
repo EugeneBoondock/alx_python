@@ -51,6 +51,7 @@ def number(n):
 def number_template(n=int(n)):
     """
     Renders an HTML page that displays the number n.
+    documented again and again 
     """
     return render_template('./templates/5-number.html', n=n)
 
