@@ -1,15 +1,18 @@
 """
 This is a Flask web application that implements various routes.
+Module Flask has been documented 
 """
 
 from flask import Flask, abort, render_template
 """
 This part imports flask from Flask hehe
+module flask has been documented
 """
 
 app = Flask(__name__)
 """
 Similar to if __name__ == '__main__'
+module Flask documented 
 """
 
 @app.route('/', strict_slashes=False)
