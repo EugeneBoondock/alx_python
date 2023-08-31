@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Define the character encoding and viewport settings -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Set the title of the HTML document -->
     <title>Document</title>
 </head>
-<BODY>
-    <!-- This html displays n when n is a number, this has been documented -->
+<body>
+    <!-- Display a heading (H1) with the value of 'n' -->
     <H1> Number: {{ n }}</H1>
-</BODY>
+    <!-- 
+        The HTML content above displays the value of 'n' when 'n' is a number.
+        The value of 'n' is provided from the Flask route handler.
+        If 'n' is not a number, this section might not be displayed properly.
+    -->
+</body>
 </html>
