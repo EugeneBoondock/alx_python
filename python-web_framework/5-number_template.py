@@ -1,32 +1,29 @@
 """
-documented again and again
-"""
-from flask import Flask, abort, render_template
-"""
-This is a flask web application
+This is a Flask web application that implements various routes.
 """
 
+from flask import Flask, abort, render_template
 
 app = Flask(__name__)
 
 @app.route('/', strict_slashes=False)
 def hello_hbnb():
     """
-    This function returns a string "Hello BNB!" when the root URL is accessed.
+    Returns a greeting message "Hello HBNB!" when the root URL is accessed.
     """
     return "Hello HBNB!"
 
 @app.route('/hbnb', strict_slashes=False)
 def hbnb():
     """
-    This function returns a string "HBNB" when the URL /hbnb is accessed
+    Returns "HBNB" when the URL /hbnb is accessed.
     """
     return "HBNB"
 
 @app.route('/c/<text>', strict_slashes=False)
 def c_is_fun(text):
     """
-    This function returns a string "HBNB" when the URL /hbnb is accessed
+    Returns "C " followed by the value of the text variable (with underscores replaced by spaces).
     """
     text = text.replace("_", " ")
     return f"C {text}"
@@ -35,7 +32,7 @@ def c_is_fun(text):
 @app.route('/python/<text>', strict_slashes=False)
 def python_text(text="is cool"):
     """
-    This function returns a string "HBNB" when the URL /hbnb is accessed
+    Returns "Python " followed by the value of the text variable (with underscores replaced by spaces).
     """
     text = text.replace("_", " ")
     return f"Python {text}"
@@ -43,20 +40,17 @@ def python_text(text="is cool"):
 @app.route('/number/<n>', strict_slashes=False)
 def number(n):
     """
-    This function returns a string "HBNB" when the URL /hbnb is accessed
+    Returns a message indicating whether n is a number or not.
     """
     if n.isdigit():
         return f"{n} is a number"
     else:
         abort(404)
 
-"""
-This module is documented absolutely 
-"""
 @app.route('/number_template/<n>', strict_slashes=False)
-def number(n):
+def number_template(n):
     """
-    This function returns a string "HBNB" when the URL /hbnb is accessed
+    Renders an HTML page that displays the number n.
     """
     if n.isdigit():
         return render_template('./templates/5-number.html', n=n)
