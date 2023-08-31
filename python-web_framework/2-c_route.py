@@ -28,7 +28,7 @@ def c_is_fun(text):
     """
     This function returns a string "HBNB" when the URL /hbnb is accessed
     """
-    for _ in text:
+    for _ in range(text):
         if _ == '_':
             print(" ")
     return f"C {text}"
