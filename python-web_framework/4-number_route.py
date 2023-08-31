@@ -45,7 +45,7 @@ def number(n):
     """
     This function returns a string "HBNB" when the URL /hbnb is accessed
     """
-    if n is type(int):
+    if n == type(int):
         return "n is a number"
 
 if __name__ == '__main__':
