@@ -40,13 +40,14 @@ def python_text(text="is cool"):
     text = text.replace("_", " ")
     return f"Python {text}"
 
+@app.route('/number/', strict_slashes=False)
 @app.route('/number/<n>', strict_slashes=False)
 def number(n):
     """
     This function returns a string "HBNB" when the URL /hbnb is accessed
     """
-    if n == type(int):
-        return "n is a number"
+    if n.isdigit():
+        return f"{n} is a number"
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
