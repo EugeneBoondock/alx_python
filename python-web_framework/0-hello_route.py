@@ -10,7 +10,7 @@ This is a flask web application
 app = Flask(__name__)
 
 @app.route('/', strict_slashes=False)
-def app():
+def hello_hbnb():
     """
     This function returns a string "Hello BNB!" when the root URL is accessed.
     """
