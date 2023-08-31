@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<header>
+    <h1>Hello, World!</h1>
+</header>
+<body>
+    <a href="./about"> About </a>
+
+    {% for post in posts %}
+    <h2>{{ post.author }}</h2>
+    <p>The author named: {{ post.author }} writes {{ post.content }} since {{ post.date_posted }}</p>
+    {% endfor %}
+</body>
+<footer>
+
+</footer>
+</html>
