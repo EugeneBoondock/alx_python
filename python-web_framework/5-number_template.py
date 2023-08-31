@@ -47,8 +47,8 @@ def number(n):
     else:
         abort(404)
 
-@app.route('/number_template/<int:n>', strict_slashes=False)
-def number_template(n):
+@app.route('/number_template/<n>', strict_slashes=False)
+def number_template(n=int(n)):
     """
     Renders an HTML page that displays the number n.
     """
