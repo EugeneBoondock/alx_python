@@ -50,6 +50,9 @@ def number(n):
     else:
         abort(404)
 
+"""
+This module is documented absolutely 
+"""
 @app.route('/number_template/<n>', strict_slashes=False)
 def number(n):
     """
