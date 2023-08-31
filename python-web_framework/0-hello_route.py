@@ -1,4 +1,8 @@
 from flask import Flask
+"""
+This is a flask web application
+"""
+
 
 app = Flask(__name__)
 
