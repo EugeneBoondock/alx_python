@@ -1,6 +1,6 @@
 # Python Web Framework: A Beginner's Guide
 
-![Python Web Framework](/py.png)
+![Python Web Framework](./py.png)
 
 Welcome to the exciting world of Python web frameworks! In this guide, we'll take you on a journey through the fundamentals of Python web development and introduce you to some awesome web frameworks that will supercharge your coding skills. Get ready to dive into the world of web development with Python!
 
@@ -49,19 +49,19 @@ source myenv/bin/activate
 
 ### Django
 
-![Django Logo](/dj.png)
+![Django Logo](./dj.png)
 
 Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design. It follows the "batteries-included" philosophy, providing everything you need to build web applications out of the box.
 
 ### Flask
 
-![Flask Logo](/flask.png)
+![Flask Logo](./flask.png)
 
 Flask is a micro web framework that is perfect for small to medium-sized applications. It gives you the freedom to choose the components you need, allowing for greater flexibility and simplicity.
 
 ### FastAPI
 
-![FastAPI Logo](/fast.jpeg)
+![FastAPI Logo](./fast.jpeg)
 
 FastAPI is a modern, fast, web framework for building APIs with Python 3.7+ based on standard Python type hints. It's built on top of Starlette for the web parts and Pydantic for the data parts.
 
