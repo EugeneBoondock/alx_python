@@ -56,7 +56,7 @@ def number(n):
     This function returns a string "HBNB" when the URL /hbnb is accessed
     """
     if n.isdigit():
-        return render_template('./templates/5-number.html')
+        return render_template('./templates/5-number.html', n=n)
     else:
         abort(404)
 
