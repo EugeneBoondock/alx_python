@@ -1,6 +1,6 @@
+import csv
 import requests
 import sys
-import csv
 
 def get_employee_data(employee_id):
     base_url = "https://jsonplaceholder.typicode.com"
