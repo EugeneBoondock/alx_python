@@ -1,32 +1,52 @@
+#!/usr/bin/python3
 """
-Python script that, using this REST API, for a given employee ID,
-exports data in JSON format.
+    python script that exports data in the JSON format
 """
-
 import json
 import requests
-import sys
+from sys import argv
+
 
 if __name__ == "__main__":
-    # Get the employee ID from command line arguments
-    employee_id = sys.argv[1]
-    
-    # Send a GET request to the API to fetch the user data
-    user = requests.get('https://jsonplaceholder.typicode.com/users/{}'.format(employee_id)).json()
-    
-    # Send a GET request to the API to fetch the user's todos
-    todos = requests.get('https://jsonplaceholder.typicode.com/users/{}/todos'.format(employee_id)).json()
+    """
+        request user info by employee ID
+    """
+    request_employee = requests.get(
+        'https://jsonplaceholder.typicode.com/users/{}/'.format(argv[1]))
+    """
+        convert json to dictionary
+    """
+    user = json.loads(request_employee.text)
+    """
+        extract username
+    """
+    username = user.get("username")
 
+    """
+        request user's TODO list
+    """
+    request_todos = requests.get(
+        'https://jsonplaceholder.typicode.com/users/{}/todos'.format(argv[1]))
+    """
+        list to store task status(completed) in dictionary format
+    """
     tasks = []
-    
-    # For each todo, create a new dictionary with task details and append it to tasks list
-    for task in todos:
-        tasks.append({
-            "task": task.get('title'),
-            "completed": task.get('completed'),
-            "username": user.get('username')
-        })
+    """
+        convert json to list of dictionaries
+    """
+    user_todos = json.loads(request_todos.text)
+    """
+        loop through dictionary & get completed tasks
+    """
+    for dictionary in user_todos:
+        task = {}
+        task["task"] = dictionary.get("title")
+        task["completed"] = dictionary.get("completed")
+        task["username"] = username
+        tasks.append(task)
 
-    # Open a new JSON file and write the tasks data into it
-    with open('{}.json'.format(employee_id), 'w') as json_file:
-        json.dump({employee_id: tasks}, json_file)
+    """
+        export to JSON
+    """
+    with open('{}.json'.format(argv[1]), 'w') as json_file:
+        json.dump({argv[1]: tasks}, json_file)
