@@ -1,3 +1,8 @@
+"""
+Python script that, using this REST API, for a given employee ID,
+exports data in JSON format.
+"""
+
 import json
 import requests
 import sys
