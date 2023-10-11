@@ -1,34 +1,33 @@
-# Export data to JSON format
+#!/usr/bin/env python3
+"""
+Python script that, using this REST API, for a given employee ID,
+exports data in JSON format.
+"""
+
+import requests
 import json
+from sys import argv
 
-def export_to_json(employee_id):
-    # Get employee details
-    employee_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
-    employee_response = requests.get(employee_url)
-    employee_data = employee_response.json()
-    employee_name = employee_data['name']
-    
-    # Get employee TODO list
-    todo_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
-    todo_response = requests.get(todo_url)
-    todo_data = todo_response.json()
-    
-    # Prepare data for export
-    export_data = []
-    for task in todo_data:
-        export_data.append({
-            "task": task["title"],
-            "completed": task["completed"],
-            "username": employee_name
-        })
-    
-    # Export data to JSON file
-    json_file = f"{employee_id}.json"
-    with open(json_file, 'w') as file:
-        json.dump({ "USER_ID": export_data }, file)
-    
-    employee_id = int(input("Enter employee ID: "))
-    export_to_json(employee_id)
+if __name__ == '__main__':
+    user_id = argv[1]
+    url = 'https://jsonplaceholder.typicode.com/users/{}'.format(user_id)
+    response = requests.get(url)
+    user_name = response.json().get('name')
 
-employee_id = int(input("Enter employee ID: "))
-export_to_json(employee_id)
+    url = 'https://jsonplaceholder.typicode.com/users/{}/todos'.format(user_id)
+    response = requests.get(url)
+    todos = response.json()
+
+    json_data = {
+        "USER_ID": [
+            {"task": todo['title'], "completed": todo['completed'], "username": user_name}
+            for todo in todos
+        ]
+    }
+
+    json_file_name = '{}.json'.format(user_id)
+
+    with open(json_file_name, 'w') as json_file:
+        json.dump(json_data, json_file, indent=4)
+
+    print("Data has been exported to {}.".format(json_file_name))
