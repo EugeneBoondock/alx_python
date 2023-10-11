@@ -23,7 +23,10 @@ total_tasks = len(todo_data)
 completed_tasks = sum(task["completed"] for task in todo_data)
 
 # Displaying progress report
-print("Employee {} is done with tasks({}/{}):".format(employee_name, completed_tasks, total_tasks))
+output = "Employee {} is done with tasks({}/{}):\n".format(employee_name, completed_tasks, total_tasks)
 for task in todo_data:
     if task["completed"]:
-        print("\t\t{}".format(task["title"]))
+        output += "\t{} {}\n".format("\t", task["title"])
+
+# Print the output
+print(output, end="")
