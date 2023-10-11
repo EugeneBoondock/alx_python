@@ -1,48 +1,71 @@
-import requests
-import json
+import json, requests, sys
 
-def get_data(url):
-    """
-    Function to send a GET request to the specified URL and return the response in JSON format.
+def get_employee_data(employee_id):
+    # URL to fetch employee details for all employees
+    employee_url = f"https://jsonplaceholder.typicode.com/users"
+    
+    try:
+        # Fetch data for all employees
+        response_employee = requests.get(employee_url)
+        response_employee.raise_for_status()
+        employee_data = response_employee.json()
+        
+        all_data = {}
+        
+        # Iterate over all employees
+        for employee in employee_data:
+            employee_id = employee["id"]
+            employee_name = employee["name"]
+            
+            # Fetch to do list
+            _, todos_data = fetch_todos(employee_id)
+            
+            # Extract completed tasks for the employee
+            completed_tasks = [{"username": employee_name, "task": todo["title"], "completed": todo["completed"]} for todo in todos_data if todo["completed"]]
+            
+            all_data[employee_id] = completed_tasks
+            
+        return all_data
+    except requests.exceptions.HTTPError as e:
+        print(f"Error: {e}")
+        sys.exit(1)
+        
+def fetch_todos(employee_id):
+    # URL to fetch employee's to do list
+    todos_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
+    
+    try:
+        response_todos = requests.get(todos_url)
+        response_todos.raise_for_status()
+        todos_data = response_todos.json()
+        
+        return todos_data
+    except requests.exceptions.HTTPError as e:
+        print(f"Error: {e}")
+        sys.exit(1)
+def print_todo_list_progress(employee_id, employee_name, completed_count, total_tasks, completed_tasks):
+    print(f"Employee {employee_name} is done with tasks({completed_count}/{total_tasks}):")
+    for task in completed_tasks:
+        print(f"\t{task['title']}")        
+# exports the data to JSON format
+def export_to_json(data):
+    with open('todo_all_employees.json', 'w') as json_file:
+        json.dump(data, json_file)
 
-    Args:
-        url (str): The URL to send the GET request to.
+# this block checks if the script is being run directly
+# and takes the employee ID as a command line argument if that's the case
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python3 0-gather_data_from_an_API.py <employee_id>")
+        sys.exit(1)
 
-    Returns:
-        dict: The response from the GET request in JSON format.
-    """
-    response = requests.get(url)
-    return response.json()
+    employee_id = int(sys.argv[1])
+    data = {}
 
-def record_all_tasks():
-    """
-    Function to record all tasks from all employees. The tasks are fetched from a REST API and 
-    stored in a dictionary. The dictionary is then written to a file named 'todo_all_employees.json'.
-    """
-    # Fetch all users
-    users = get_data('https://jsonplaceholder.typicode.com/users')
-    all_tasks = {}
+    for id in range(1, employee_id + 1):
+        id, employee_name, completed_count, total_tasks, completed_tasks = get_employee_data(id)
+        employee_data = [{"username": employee_name, "task": task["title"], "completed": task["completed"]} for task in completed_tasks]
+        data[str(id)] = employee_data
 
-    for user in users:
-        user_id = user['id']
-        username = user['username']
-
-        # Fetch all todos for the current user
-        todos = get_data(f'https://jsonplaceholder.typicode.com/users/{user_id}/todos')
-
-        tasks = []
-        for todo in todos:
-            task = {
-                "username": username,
-                "task": todo['title'],
-                "completed": todo['completed']
-            }
-            tasks.append(task)
-
-        all_tasks[str(user_id)] = tasks
-
-    # Write the tasks to a JSON file
-    with open('todo_all_employees.json', 'w') as f:
-        json.dump(all_tasks, f)
-
-record_all_tasks()
+    export_to_json(data)
+    print("Data exported to todo_all_employees.json")
