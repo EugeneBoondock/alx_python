@@ -8,8 +8,7 @@ import csv
 import requests
 from sys import argv
 
-
-if __name__ == '__main__':
+if __name__ == '__main':
     user_id = argv[1]
     url = 'https://jsonplaceholder.typicode.com/users/{}'.format(user_id)
     response = requests.get(url)
@@ -19,10 +18,20 @@ if __name__ == '__main__':
     response = requests.get(url)
     todos = response.json()
 
-    with open(f"{user_id}.csv", mode='w', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
-        for todo in todos:
-            writer.writerow([user_id, user_name, todo['completed'], todo['title']])
+    total_tasks = len(todos)
+    done_tasks = sum([1 for todo in todos if todo['completed']])
 
-    print(f"Data exported to {user_id}.csv")
+    # Export data to CSV
+    csv_filename = '{}.csv'.format(user_id)
+    with open(csv_filename, 'w', newline='') as csv_file:
+        csv_writer = csv.writer(csv_file)
+        csv_writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
+        for todo in todos:
+            csv_writer.writerow([user_id, user_name, str(todo['completed']), todo['title'])
+
+    print("Employee {} is done with tasks({}/{}):".format(user_name, done_tasks, total_tasks))
+    for todo in todos:
+        if todo['completed']:
+            print("\t {}".format(todo['title']))
+
+    print("Data exported to {}.".format(csv_filename))
