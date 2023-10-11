@@ -72,7 +72,7 @@ def export_data(user_id):
         tasks.update({dictionary.get("title"): dictionary.get("completed")})
 
     """
-        Export to CSV
+        Export
     """
     with open('{}.csv'.format(user_id), mode='w', newline='') as file:
         file_editor = csv.writer(file, delimiter=',', quoting=csv.QUOTE_ALL)
