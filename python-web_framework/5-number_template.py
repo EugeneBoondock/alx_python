@@ -50,15 +50,20 @@ def number(n):
     else:
         abort(404)
 
-@app.route('/number_template/<n>', strict_slashes=False)
-def number(n):
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
+
+
+@app.route('/number_template/<int:n>', strict_slashes=False)
+def number_template(n):
     """
-    This function returns a string "HBNB" when the URL /hbnb is accessed
+    Renders an HTML page that displays the number n.
+    Documented again and again.
     """
-    if n.isdigit():
-        return render_template('./templates/5-number.html')
-    else:
-        abort(404)
+    return render_template('./templates/5-number.html', n=n)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
+"""
+All modules have been documented 
+"""
