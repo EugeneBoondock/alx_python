@@ -1,53 +1,48 @@
 import requests
 import json
 
-def export_to_json():
-    # Get all employee IDs
-    employee_ids_url = "https://jsonplaceholder.typicode.com/users"
-    employee_ids_response = requests.get(employee_ids_url)
-    employee_ids_data = employee_ids_response.json()
-    employee_ids = [employee['id'] for employee in employee_ids_data]
+def get_data(url):
+    """
+    Function to send a GET request to the specified URL and return the response in JSON format.
 
-    # Create dictionary to store all tasks
+    Args:
+        url (str): The URL to send the GET request to.
+
+    Returns:
+        dict: The response from the GET request in JSON format.
+    """
+    response = requests.get(url)
+    return response.json()
+
+def record_all_tasks():
+    """
+    Function to record all tasks from all employees. The tasks are fetched from a REST API and 
+    stored in a dictionary. The dictionary is then written to a file named 'todo_all_employees.json'.
+    """
+    # Fetch all users
+    users = get_data('https://jsonplaceholder.typicode.com/users')
     all_tasks = {}
 
-    # Iterate over each employee ID
-    for employee_id in employee_ids:
-        # Get employee details
-        employee_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
-        employee_response = requests.get(employee_url)
-        employee_data = employee_response.json()
-        employee_username = employee_data['username']
+    for user in users:
+        user_id = user['id']
+        username = user['username']
 
-        # Get employee TODO list
-        todo_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
-        todo_response = requests.get(todo_url)
-        todo_data = todo_response.json()
+        # Fetch all todos for the current user
+        todos = get_data(f'https://jsonplaceholder.typicode.com/users/{user_id}/todos')
 
-        # Create list to store tasks for current employee
-        employee_tasks = []
-
-        # Iterate over each task
-        for task in todo_data:
-            task_title = task['title']
-            task_completed = task['completed']
-
-            # Create dictionary for current task
-            task_dict = {
-                "username": employee_username,
-                "task": task_title,
-                "completed": task_completed
+        tasks = []
+        for todo in todos:
+            task = {
+                "username": username,
+                "task": todo['title'],
+                "completed": todo['completed']
             }
+            tasks.append(task)
 
-            # Add task dictionary to employee tasks list
-            employee_tasks.append(task_dict)
+        all_tasks[user_id] = tasks
 
-        # Add employee tasks list to all tasks dictionary
-        all_tasks[employee_id] = employee_tasks
+    # Write the tasks to a JSON file
+    with open('todo_all_employees.json', 'w') as f:
+        json.dump(all_tasks, f)
 
-    # Export data to JSON file
-    json_file = "todo_all_employees.json"
-    with open(json_file, 'w') as file:
-        json.dump(all_tasks, file)
-
-export_to_json()
+record_all_tasks()
