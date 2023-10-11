@@ -1,36 +1,27 @@
+#!/usr/bin/env python3
+"""
+Python script that, using this REST API, for a given employee ID,
+returns information about his/her TODO list progress.
+"""
+
 import requests
+from sys import argv
 
-def get_employee_todos(employee_id):
-    url = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
+
+if __name__ == '__main__':
+    user_id = argv[1]
+    url = 'https://jsonplaceholder.typicode.com/users/{}'.format(user_id)
     response = requests.get(url)
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print(f"Error: Unable to fetch data for employee {employee_id}")
-        return None
+    user_name = response.json().get('name')
 
-def display_todo_progress(todos):
-    completed_todos = [todo for todo in todos if todo["completed"]]
-    total_todos = len(todos)
-    completed_todos_count = len(completed_todos)
-    employee_name = get_employee_name(todos[0]["userId"])
-    print(f"Employee {employee_name} is done with tasks({completed_todos_count}/{total_todos}):")
-    for todo in completed_todos:
-        print(f"\t{todo['title']}")
-
-def get_employee_name(employee_id):
-    url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
+    url = 'https://jsonplaceholder.typicode.com/users/{}/todos'.format(user_id)
     response = requests.get(url)
-    if response.status_code == 200:
-        return response.json()["name"]
-    else:
-        print(f"Error: Unable to fetch data for employee {employee_id}")
-        return None
+    todos = response.json()
 
-if __name__ == "__main__":
-    employee_id = int(input("Enter employee ID: "))
-    todos = get_employee_todos(employee_id)
-    if todos:
-        display_todo_progress(todos)
-    else:
-        print("No data found for employee.")
+    total_tasks = len(todos)
+    done_tasks = sum([1 for todo in todos if todo['completed']])
+
+    print("Employee {} is done with tasks({}/{}):".format(user_name, done_tasks, total_tasks))
+    for todo in todos:
+        if todo['completed']:
+            print("\t {}".format(todo['title']))
