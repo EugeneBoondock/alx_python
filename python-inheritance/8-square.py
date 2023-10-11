@@ -1,72 +1,33 @@
 #!/usr/bin/python3
-'''creating an empty class script'''
-
-
-class BaseGeometryMetaClass(type):
-    '''
-    creating the meta Class to remove unwanted subclasses.
-    '''
-    def __dir__(cls):
-        '''
-        function method creats a list of all attributes for the class and excludes the init_subclass.
-        '''
-        return [attribute for attribute in super().__dir__() if attribute != '__init_subclass__']
-
-
-class BaseGeometry(metaclass = BaseGeometryMetaClass):
-    '''empty class created'''
-    def __dir__(cls):
-        '''
-        function method creats a list of all attributes for the class and excludes the init_subclass.
-        '''
-        return [attribute for attribute in super().__dir__() if attribute != '__init_subclass__']
-    pass
-
-    def area(self, width, height):
-        raise Exception("area() is not implemented")
-
-    def integer_validator(self, name, value):
-        if not isinstance(value, int):
-            raise TypeError(f"{name} must be an integer")
-        if value <= 0:
-            raise ValueError(f"{name} must be greater than 0")
-
-
 """
-Inherits from BaseGeometry
+This module contains the Square class that inherits from Rectangle.
 """
 
-
-class Rectangle(BaseGeometry):
-    """
-    defines and initializes width and height
-    """
-
-    def __init__(self, width, height):
-        self.integer_validator("width", width)
-        self.integer_validator("height", height)
-        self.__width = width
-        self.__height = height
-
-    def __str__(self):
-        return f"[Rectangle] {self.__width}/{self.__height}"
-
-    def area(self):
-        return self.__height * self.__width
-
-
-"""
-Inherits from Rectangle
-"""
+Rectangle = __import__('7-rectangle').Rectangle
 
 
 class Square(Rectangle):
     """
-    Properly calculates square area
+    A class named Square that inherits from Rectangle.
     """
-    def __init__(self, size):
-        self.__size = size
-        self.integer_validator("size", size)
 
-    def area(self):
-        return self.__size * self.__size
+    def __init__(self, size):
+        """
+        Initializes a Square instance.
+        Args:
+            size (int): The size of the square.
+        """
+        # Validate and set size using the integer_validator method
+        self.integer_validator("size", size)
+        # Call the constructor of the parent class Rectangle
+        # with size for both width and height
+        super().__init__(size, size)
+
+    def __str__(self):
+        """
+        Returns a string representation of the square.
+        """
+        return "[Square] {}/{}".format(
+            self._Rectangle__width,
+            self._Rectangle__height
+        )
