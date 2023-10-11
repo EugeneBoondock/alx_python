@@ -4,8 +4,8 @@ Python script that, using this REST API, for a given employee ID,
 exports data in CSV format.
 """
 
-import requests
 import csv
+import requests
 from sys import argv
 
 if __name__ == '__main':
