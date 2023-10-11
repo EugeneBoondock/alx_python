@@ -1,33 +1,27 @@
-#!/usr/bin/env python3
-"""
-Python script that, using this REST API, for a given employee ID,
-exports data in JSON format.
-"""
-
 import json
 import requests
-from sys import argv
+import sys
 
-if __name__ == '__main__':
-    user_id = argv[1]
-    url = 'https://jsonplaceholder.typicode.com/users/{}'.format(user_id)
-    response = requests.get(url)
-    user_name = response.json().get('name')
+if __name__ == "__main__":
+    # Get the employee ID from command line arguments
+    employee_id = sys.argv[1]
+    
+    # Send a GET request to the API to fetch the user data
+    user = requests.get('https://jsonplaceholder.typicode.com/users/{}'.format(employee_id)).json()
+    
+    # Send a GET request to the API to fetch the user's todos
+    todos = requests.get('https://jsonplaceholder.typicode.com/users/{}/todos'.format(employee_id)).json()
 
-    url = 'https://jsonplaceholder.typicode.com/users/{}/todos'.format(user_id)
-    response = requests.get(url)
-    todos = response.json()
+    tasks = []
+    
+    # For each todo, create a new dictionary with task details and append it to tasks list
+    for task in todos:
+        tasks.append({
+            "task": task.get('title'),
+            "completed": task.get('completed'),
+            "username": user.get('username')
+        })
 
-    json_data = {
-        "USER_ID": [
-            {"task": todo['title'], "completed": todo['completed'], "username": user_name}
-            for todo in todos
-        ]
-    }
-
-    json_file_name = '{}.json'.format(user_id)
-
-    with open(json_file_name, 'w') as json_file:
-        json.dump(json_data, json_file, indent=4)
-
-    print("Data has been exported to {}.".format(json_file_name))
+    # Open a new JSON file and write the tasks data into it
+    with open('{}.json'.format(employee_id), 'w') as json_file:
+        json.dump({employee_id: tasks}, json_file)
