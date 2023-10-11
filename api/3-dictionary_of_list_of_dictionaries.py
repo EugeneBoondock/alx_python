@@ -39,7 +39,7 @@ def record_all_tasks():
             }
             tasks.append(task)
 
-        all_tasks[user_id] = tasks
+        all_tasks[str(user_id)] = tasks
 
     # Write the tasks to a JSON file
     with open('todo_all_employees.json', 'w') as f:
