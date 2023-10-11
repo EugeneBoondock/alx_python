@@ -26,4 +26,4 @@ completed_tasks = sum(task["completed"] for task in todo_data)
 print("Employee {} is done with tasks({}/{}):".format(employee_name, completed_tasks, total_tasks))
 for task in todo_data:
     if task["completed"]:
-        print("\t{} {}".format(chr(9), task["title"]))
+        print("\t\t{}".format(task["title"]))
