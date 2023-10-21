@@ -19,7 +19,7 @@ if __name__ == '__main__':
     todos = response.json()
 
     with open('{}.csv'.format(user_id), 'w', newline='') as file:
-        writer = csv.writer(file)
+        writer = csv.writer(file, quoting=csv.QUOTE_ALL, quotechar='"')
         for todo in todos:
-            line = '"' + str(user_id) + '","' + str(user_name) + '","' + str(todo['completed']) + '","' + todo['title'] + '"'
-            writer.writerow([line])
+            line = [str(user_id), str(user_name), str(todo['completed']), todo['title']]
+            writer.writerow(line)
