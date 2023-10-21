@@ -1,24 +1,51 @@
 #!/usr/bin/python3
-"""fetches information from JSONplaceholder API and exports to JSON"""
-
-from json import dump
-from requests import get
+"""
+    python script that exports data in the JSON format
+"""
+import json
+import requests
 from sys import argv
 
-
 if __name__ == "__main__":
-    todo_url = "https://jsonplaceholder.typicode.com/user/{}/todos".format(
-        argv[1])
-    name_url = "https://jsonplaceholder.typicode.com/users/{}".format(argv[1])
-    todo_result = get(todo_url).json()
-    name_result = get(name_url).json()
+    """
+        request user info by employee ID
+    """
+    request_employee = requests.get(
+        'https://jsonplaceholder.typicode.com/users/{}/'.format(argv[1]))
+    """
+        convert json to dictionary
+    """
+    user = json.loads(request_employee.text)
+    """
+        extract username
+    """
+    username = user.get("username")
 
-    todo_list = []
-    for todo in todo_result:
-        todo_dict = {}
-        todo_dict.update({"task": todo.get("title"), "completed": todo.get(
-            "completed"), "username": name_result.get("username")})
-        todo_list.append(todo_dict)
+    """
+        request user's TODO list
+    """
+    request_todos = requests.get(
+        'https://jsonplaceholder.typicode.com/users/{}/todos'.format(argv[1]))
+    """
+        list to store task status(completed) in dictionary format
+    """
+    tasks = []
+    """
+        convert json to list of dictionaries
+    """
+    user_todos = json.loads(request_todos.text)
+    """
+        loop through dictionary & get completed tasks
+    """
+    for dictionary in user_todos:
+        task = {}
+        task["task"] = dictionary.get("title")
+        task["completed"] = dictionary.get("completed")
+        task["username"] = username
+        tasks.append(task)
 
-    with open("{}.json".format(argv[1]), 'w') as f:
-        dump({argv[1]: todo_list}, f)
+    """
+        export to JSON with indentation
+    """
+    with open('{}.json'.format(argv[1]), 'w') as json_file:
+        json.dump({argv[1]: tasks}, json_file, indent=2)
