@@ -21,4 +21,5 @@ if __name__ == '__main__':
     with open('{}.csv'.format(user_id), 'w', newline='') as file:
         writer = csv.writer(file)
         for todo in todos:
-            writer.writerow([user_id, user_name, todo['completed'], todo['title']])
+            line = '"' + str(user_id) + '","' + str(user_name) + '","' + str(todo['completed']) + '","' + todo['title'] + '"'
+            writer.writerow([line])
