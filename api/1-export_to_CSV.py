@@ -1,43 +1,24 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """
-Check student .CSV output of user information
+Python script that, using this REST API, for a given employee ID,
+returns information about his/her TODO list progress.
 """
 
 import csv
 import requests
-import sys
+from sys import argv
 
-users_url = "https://jsonplaceholder.typicode.com/users?id="
-todos_url = "https://jsonplaceholder.typicode.com/todos"
+if __name__ == '__main__':
+    user_id = argv[1]
+    url = 'https://jsonplaceholder.typicode.com/users/{}'.format(user_id)
+    response = requests.get(url)
+    user_name = response.json().get('username')
 
+    url = 'https://jsonplaceholder.typicode.com/users/{}/todos'.format(user_id)
+    response = requests.get(url)
+    todos = response.json()
 
-def user_info(id):
-    """ Check user information """
-
-    total_tasks = 0
-    response = requests.get(todos_url).json()
-    for i in response:
-        if i['userId'] == id:
-            total_tasks += 1
-
-    response = requests.get(users_url + str(id)).json()
-    username = response[0]['username']
-
-    flag = 0
-    with open(str(id) + ".csv", 'r') as f:
-        for line in f:
-            if not line == '\n':
-                if not str(id) in line:
-                    print("User ID: Incorrect / ", end='')
-                    flag = 1
-                # Check for the username enclosed in quotes
-                if not '"{}"'.format(username) in line:
-                    print("Username: Incorrect")
-                    flag = 1
-
-    if flag == 0:
-        print("User ID and Username: OK")
-
-
-if __name__ == "__main__":
-    user_info(int(sys.argv[1]))
+    with open('{}.csv'.format(user_id), 'w', newline='') as file:
+        writer = csv.writer(file, quoting=csv.QUOTE_ALL)
+        for todo in todos:
+            writer.writerow([user_id, user_name, todo['completed'], todo['title']])
