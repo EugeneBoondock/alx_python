@@ -4,7 +4,6 @@ Contains a function for checking if an object
 is an instance of a class that inherited from a specified class.
 """
 
-
 def inherits_from(obj, a_class):
     """
     Check if an object is an instance of a
