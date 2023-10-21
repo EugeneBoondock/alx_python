@@ -14,16 +14,14 @@ if __name__ == '__main__':
 
     username = user.get('username')
 
-    dict = {}
     data = []
 
     for todo in todos:
         data.append({'task': todo.get('title'),
                     'completed': todo.get('completed'), 'username': username})
 
-    dict[user_id] = data
+    dict_data = {user_id: data}
 
-    filename = user_id + ".json"
-    with open(filename, "w", encoding="utf-8") as json_file:
-        json_text = json.dumps(dict)
-        json_file.write(json_text)
+    with open(f"{user_id}.json", "w", encoding="utf-8") as json_file:
+        json.dump(dict_data, json_file)
+
