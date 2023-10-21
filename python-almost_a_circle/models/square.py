@@ -1,9 +1,19 @@
+"""
+This module defines the Square class, which is a subclass of the Rectangle class.
+"""
+
 from models.rectangle import Rectangle
+
 
 class Square(Rectangle):
     """
     A class representing a square, inheriting from the Rectangle class.
-    true
+
+    Attributes:
+        width (int): Width of the square.
+        height (int): Height of the square.
+        x (int): X-coordinate of the top-left corner.
+        y (int): Y-coordinate of the top-left corner.
     """
 
     def __init__(self, size, x=0, y=0, id=None):
@@ -11,7 +21,7 @@ class Square(Rectangle):
         Initializes a Square instance.
 
         Args:
-            size (int): one size of the square.
+            size (int): Length of one side of the square.
             x (int, optional): X-coordinate of the top-left corner. Defaults to 0.
             y (int, optional): Y-coordinate of the top-left corner. Defaults to 0.
             id (int, optional): ID of the square. Defaults to None.
@@ -20,7 +30,7 @@ class Square(Rectangle):
 
     def __str__(self):
         """
-        String representation of the square.
+        Returns the string representation of the square.
         """
         return f"[Square] ({self.id}) {self.x}/{self.y} - {self.width}"
 
@@ -44,15 +54,15 @@ class Square(Rectangle):
 
     def area(self):
         """
-        Calculate the area of the square.
+        Calculates the area of the square.
         """
         return self.width * self.width
 
     def display(self):
         """
-        Display the square using the '#' character.
+        Prints a visual representation of the square using '#' characters.
         """
-        for i in range(self.y):
+        for _ in range(self.y):
             print()
-        for i in range(self.height):
-            print(' ' * self.x + '#' * self.width)
+        for _ in range(self.height):
+            print(" " * self.x + "#" * self.width)
