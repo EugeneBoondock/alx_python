@@ -2,10 +2,6 @@
 documented again and again
 """
 from flask import Flask, abort, render_template
-"""
-This is a flask web application
-"""
-
 
 app = Flask(__name__)
 
@@ -50,20 +46,13 @@ def number(n):
     else:
         abort(404)
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
-
-
 @app.route('/number_template/<int:n>', strict_slashes=False)
 def number_template(n):
     """
     Renders an HTML page that displays the number n.
     Documented again and again.
     """
-    return render_template('./templates/5-number.html', n=n)
+    return render_template('5-number.html', n=n)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
-"""
-All modules have been documented 
-"""
