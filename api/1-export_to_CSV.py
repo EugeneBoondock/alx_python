@@ -1,86 +1,37 @@
-#!/usr/bin/python3
-"""
-    Python script that exports data in the CSV format
-"""
 import csv
-import json
 import requests
-from sys import argv
+import sys
 
-def export_data(user_id):
-    """
-        Request user info by employee ID
-    """
-    try:
-        request_employee = requests.get(
-            'https://jsonplaceholder.typicode.com/users/{}'.format(user_id))
-        request_employee.raise_for_status()
-    except requests.exceptions.HTTPError as errh:
-        print ("HTTP Error:",errh)
-        return
-    except requests.exceptions.ConnectionError as errc:
-        print ("Error Connecting:",errc)
-        return
-    except requests.exceptions.Timeout as errt:
-        print ("Timeout Error:",errt)
-        return
-    except requests.exceptions.RequestException as err:
-        print ("Something went wrong",err)
-        return
+if len(sys.argv) != 2:
+    sys.exit(1)
 
-    """
-        Convert json to dictionary
-    """
-    user = json.loads(request_employee.text)
-    """
-        Extract username
-    """
-    username = user.get("username")
+employee_id = int(sys.argv[1])
 
-    """
-        Request user's TODO list
-    """
-    try:
-        request_todos = requests.get(
-            'https://jsonplaceholder.typicode.com/todos?userId={}'.format(user_id))
-        request_todos.raise_for_status()
-    except requests.exceptions.HTTPError as errh:
-        print ("HTTP Error:",errh)
-        return
-    except requests.exceptions.ConnectionError as errc:
-        print ("Error Connecting:",errc)
-        return
-    except requests.exceptions.Timeout as errt:
-        print ("Timeout Error:",errt)
-        return
-    except requests.exceptions.RequestException as err:
-        print ("Something went wrong",err)
-        return
+employee_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
+todos_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
 
-    """
-        Dictionary to store task status(completed) in boolean format
-    """
-    tasks = {}
-    """
-        Convert json to list of dictionaries
-    """
-    user_todos = json.loads(request_todos.text)
-    """
-        Loop through dictionary & get completed tasks
-    """
-    for dictionary in user_todos:
-        tasks.update({dictionary.get("title"): dictionary.get("completed")})
+employee_response = requests.get(employee_url)
+todos_response = requests.get(todos_url)
 
-    """
-        Export
-    """
-    with open('{}.csv'.format(user_id), mode='w', newline='') as file:
-        file_editor = csv.writer(file, delimiter=',', quoting=csv.QUOTE_ALL)
-        for k, v in tasks.items():
-            file_editor.writerow([user_id, username, v, k])
+if employee_response.status_code != 200 or todos_response.status_code != 200:
+    sys.exit(1)
 
-if __name__ == "__main__":
-   if len(argv) > 1:
-       export_data(argv[1])
-   else:
-       print("Please provide a user id as an argument.")
+employee_data = employee_response.json()
+todo_data = todos_response.json()
+employee_name = employee_data.get("name", "unknown employee")
+employee_username = employee_data.get("username", "unkown employee")
+
+csv_filename = f"{employee_id}.csv"
+
+with open(csv_filename, mode="w", newline="") as csv_file:
+    csv_writer = csv.writer(csv_file)
+
+    csv_writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
+
+for task in todo_data:
+        task_completed_status = "Completed" if task["completed"] else "Not Completed"
+        csv_writer.writerow([employee_id, employee_username, task_completed_status, task["title"]])
+
+
+with open(csv_filename, 'r') as f:
+     pass
